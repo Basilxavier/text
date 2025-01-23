@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Text Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        select, input[type="text"], textarea {
+            width: 100%;
+            margin-top: 5px;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dynamic Text Generator</h1>
+        <p>Enter your text and customize its appearance below:</p>
+
+        <form id="textForm">
+            <label for="userText">Enter Your Text:</label>
+            <textarea id="userText" rows="4" placeholder="Type something..."></textarea>
+
+            <label for="fontSize">Font Size:</label>
+            <select id="fontSize">
+                <option value="16px">Small</option>
+                <option value="20px">Medium</option>
+                <option value="24px">Large</option>
+                <option value="32px">Extra Large</option>
+            </select>
+
+            <label for="textColor">Text Color:</label>
+            <input type="text" id="textColor" placeholder="e.g., red, #ff0000">
+
+            <label for="bgColor">Background Color:</label>
+            <input type="text" id="bgColor" placeholder="e.g., lightblue, #add8e6">
+
+            <button type="button" onclick="generateText()">Generate</button>
+        </form>
+
+        <div class="output" id="output" style="display: none;"></div>
+    </div>
+
+    <script>
+        function generateText() {
+            // Get input values
+            const userText = document.getElementById('userText').value;
+            const fontSize = document.getElementById('fontSize').value;
+            const textColor = document.getElementById('textColor').value;
+            const bgColor = document.getElementById('bgColor').value;
+
+            // Update output box
+            const outputDiv = document.getElementById('output');
+
+            if (userText.trim() === '') {
+                alert('Please enter some text!');
+                return;
+            }
+
+            outputDiv.style.display = 'block';
+            outputDiv.style.fontSize = fontSize;
+            outputDiv.style.color = textColor || 'black';
+            outputDiv.style.backgroundColor = bgColor || 'white';
+            outputDiv.innerHTML = userText;
+        }
+    </script>
+</body>
+</html>
